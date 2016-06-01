@@ -1,0 +1,83 @@
+<template name="moderatePolls">
+    <ul class="nav nav-tabs">
+        <li role="presentation" class="{{isActiveRoute 'moderate.polls'}}"><a href="#">{{{fa 'list-ul'}}} Polls</a></li>
+        <li role="presentation" class="{{isActiveRoute 'moderate.questions'}}"><a href="{{pathFor 'moderate.questions'}}">{{{fa 'question'}}} Questions</a></li>
+    </ul>
+    <div class="row" style="margin-top: 10px;">
+        <div class="col-md-4">
+            <h3>{{{fa 'list-alt'}}} All polls</h3>
+            <hr>
+            {{#each pollsWithStatus 'pending'}}
+                <div class="row">
+                    <div class="col-md-12">
+                        {{> pollPanel}}
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+        <div class="col-md-4">
+            <h3>{{{fa 'paperclip'}}} Selected polls</h3>
+            <hr>
+            {{#each pollsWithStatus 'selected'}}
+                <div class="row">
+                    <div class="col-md-12">
+                        {{> pollPanel}}
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+        <div class="col-md-4">
+            <h3>{{{fa 'globe'}}} Published polls</h3>
+            <hr>
+            {{#each pollsWithStatus 'published'}}
+                <div class="row">
+                    <div class="col-md-12">
+                        {{> pollPanel}}
+                    </div>
+                </div>
+            {{/each}}
+        </div>
+    </div>
+</template>
+
+<template name="pollPanel">
+    <div class="panel panel-default">
+        {{#if isStatus 'selected'}}
+        <div class="panel-heading">
+            <span class="pull-right">{{{fa 'check'}}}</span>
+            <div class="clearfix"></div>
+        </div>
+        {{/if}}
+        <div class="panel-body">
+            <h4><small><em>{{text}}</em></small></h4>
+        </div>
+        <ul class="list-group">
+            {{#each answers}}
+                <li class="list-group-item">{{{fa icon}}} {{this}}</li>
+            {{/each}}
+            <li class="list-group-item">
+                {{#if isStatus 'pending'}}
+                    <button class="btn btn-default btn-xs pull-right js-select-poll">
+                        Select {{{fa 'arrow-right'}}}
+                    </button>
+                    <div class="clearfix"></div>
+                {{/if}}
+                {{#if isStatus 'selected'}}
+                    <button class="btn btn-warning btn-xs js-select-poll">
+                        {{{fa 'arrow-left'}}} Unselect
+                    </button>
+                    <button class="btn btn-info btn-xs pull-right js-publish-poll">
+                        Publish {{{fa 'globe'}}}
+                    </button>
+                    <div class="clearfix"></div>
+                {{/if}}
+                {{#if isStatus 'published'}}
+                    <button class="btn btn-success btn-xs pull-right js-archive-poll">
+                        Answered {{{fa 'check'}}}
+                    </button>
+                    <div class="clearfix"></div>
+                {{/if}}
+            </li>
+        </ul>
+    </div>
+</template>

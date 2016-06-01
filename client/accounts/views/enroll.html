@@ -1,0 +1,9 @@
+<template name="adminAccountsEnroll">
+    <h2>{{{fa 'user-plus'}}} Add a user</h2>
+    <hr>
+    <div class="row">
+        <div class="col-md-6">
+            {{> quickForm schema="EnrollmentForm" id="EnrollmentForm" type="method" meteormethod="enrollUser" buttonContent="Inviter"}}
+        </div>
+    </div>
+</template>

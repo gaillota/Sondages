@@ -1,0 +1,83 @@
+<template name="moderateQuestions">
+    <ul class="nav nav-tabs">
+        <li role="presentation" class="{{isActiveRoute 'moderate.polls'}}"><a href="{{pathFor 'moderate.polls'}}">{{{fa 'list-ul'}}} Polls</a></li>
+        <li role="presentation" class="{{isActiveRoute 'moderate.questions'}}"><a href="#">{{{fa 'question'}}} Questions</a></li>
+    </ul>
+    <div class="row" style="margin-top: 10px;">
+        <div class="col-md-4">
+            <h3>{{{fa 'list-alt'}}} All questions</h3>
+            <hr>
+            <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th>Question</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each questionWithStatus 'pending'}}
+                        <tr>
+                            <td>{{text}}</td>
+                            <td>
+                                <button class="btn btn-info btn-xs js-select-question pull-right">Select {{{fa 'arrow-right'}}}</button>
+                            </td>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h3>{{{fa 'paperclip'}}} Selected questions</h3>
+            <hr>
+            <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th>Question</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each questionWithStatus 'selected'}}
+                        <tr>
+                            <td>{{text}}</td>
+                            <td>
+                                <div class="pull-right">
+                                    <button class="btn btn-warning btn-xs js-select-question">{{{fa 'arrow-left'}}} Unselect</button>
+                                    <button class="btn btn-success btn-xs js-publish-question">{{{fa 'globe'}}} Publish</button>
+                                </div>
+                            </td>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h3>{{{fa 'globe'}}} Published questions</h3>
+            <hr>
+            <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th>Question</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each $mapped questionWithStatus 'published'}}
+                        <tr class="{{#if $first}}success{{/if}}">
+                            <td>{{text}}</td>
+                            <td>
+                                <button class="btn btn-danger btn-xs js-archive-question pull-right">{{{fa 'check'}}} Answered</button>
+                            </td>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</template>

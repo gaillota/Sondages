@@ -1,0 +1,36 @@
+<template name="adminPolls">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>{{{fa 'list-ul'}}} Polls questions</h2>
+            <hr>
+            <a class="btn btn-info" href="{{pathFor 'admin.polls.create'}}">{{{fa 'plus'}}} Create poll question</a>
+            <button class="btn btn-danger js-fake-polls">Create 10 fake polls questions</button>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px;">
+        {{#each polls}}
+            <div class="col-md-4">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        {{rank}}
+                        <div class="pull-right">
+                            <button class="btn btn-default btn-xs js-upgrade">{{{fa 'angle-up'}}}</button>
+                            <button class="btn btn-default btn-xs js-downgrade">{{{fa 'angle-down'}}}</button>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <h4><small><em>{{text}}</em></small></h4>
+                    </div>
+                    <ul class="list-group">
+                        {{#each answers}}
+                            <li class="list-group-item">{{{fa icon}}} {{this}}</li>
+                        {{/each}}
+                        <li class="list-group-item">
+                            <button class="btn btn-danger btn-xs js-delete-poll">{{{fa 'trash'}}} Remove</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</template>

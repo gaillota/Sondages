@@ -1,0 +1,57 @@
+<template name="navbar">
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{pathFor 'index'}}">Sondages</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    {{#if currentUser}}
+                        {{#if hasRole 'admin' currentUser}}
+                            <li class="dropdown {{isActiveRoute regex='admin'}}">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    {{{fa 'terminal'}}} Admin <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{pathFor 'admin.accounts'}}">{{{fa 'users'}}} Accounts</a></li>
+                                    <li><a href="{{pathFor 'admin.polls'}}">{{{fa 'list-ul'}}} Polls</a></li>
+                                </ul>
+                            </li>
+                        {{/if}}
+                        {{#if hasRole 'moderator' currentUser}}
+                            <li class="{{isActiveRoute regex='moderate'}}"><a href="{{pathFor 'moderate.polls'}}">{{{fa 'commenting'}}} Moderate</a></li>
+                        {{/if}}
+                        {{#if hasRole 'speaker' currentUser}}
+                            <li class="{{isActiveRoute regex='speaker'}}"><a href="{{pathFor 'speaker'}}">{{{fa 'comment-o'}}} Speaker</a></li>
+                        {{/if}}
+                    {{/if}}
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    {{#if currentUser}}
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    {{usernameGuesser}} <span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{{pathFor 'changePassword'}}">{{{fa 'unlock-alt'}}} Change password</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="#" class="js-logout">{{{fa 'sign-out'}}} Logout</a></li>
+                                </ul>
+                            </li>
+                    {{else}}
+                        <li class="{{isActiveRoute 'login'}}"><a href="{{pathFor 'login'}}">{{{fa 'sign-in'}}} Log in</a></li>
+                    {{/if}}
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</template>

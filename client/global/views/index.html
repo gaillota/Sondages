@@ -1,0 +1,80 @@
+<template name="index">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>{{{fa 'list-ul'}}} Poll from the speaker</h3>
+            <hr>
+            {{#each polls}}
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2><small>{{text}}</small></h2>
+                        {{#autoForm schema="AnswerPollForm" id="answerPollForm" type="method" meteormethod="answerPoll" resetOnSuccess=false}}
+                            {{> afQuickField name="answers" type=answerType options=answerOptions}}
+                            <div class="form-group">
+                                <button class="btn btn-success" disabled="{{formDisabled}}">Send</button>
+                            </div>
+                        {{/autoForm}}
+                    </div>
+                </div>
+            {{else}}
+                <h3 class="text-center">
+                    <small>No poll question for now...</small>
+                </h3>
+            {{/each}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>{{{fa 'question'}}} Ask a question</h3>
+            <hr>
+            {{> quickForm schema="QuestionForm" id="questionForm" type="method" meteormethod="askQuestion" buttonContent="Send"}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6" style="margin-bottom: 10px;">
+            <h4>Your questions</h4>
+            <hr>
+            <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th>Question</th>
+                        <th>Status</th>
+                        <th>Asked at</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each questions}}
+                        <tr>
+                            <td>{{text}}</td>
+                            <td><span class="label label-warning">pending</span></td>
+                            <td>{{formatDateRelative createdAt}}</td>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <h4>Answered questions</h4>
+            <hr>
+            <div class="table-responsive">
+                <table class="table table-hover table-striped">
+                    <thead>
+                    <tr>
+                        <th>Question</th>
+                        <th>Asked at</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {{#each answeredQuestions}}
+                        <tr>
+                            <td>{{text}}</td>
+                            <td>{{formatDateRelative createdAt}}</td>
+                        </tr>
+                    {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</template>

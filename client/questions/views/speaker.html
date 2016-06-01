@@ -1,0 +1,61 @@
+<template name="speaker">
+    <div class="row" style="margin-bottom: 20px;">
+        <div class="col-md-12">
+            <h2>{{{fa 'list-ul'}}} Poll question</h2>
+            <hr>
+            {{#with currentPoll}}
+                <div class="row">
+                    <div class="col-md-4">
+                        <h2 style="margin-top: 0;"><small>{{text}}</small></h2>
+                        <table>
+                            {{#each answers}}
+                                <tr>
+                                    <td style="width: 30px; text-align: left;">{{{fa icon}}}</td>
+                                    <td>{{this}}</td>
+                                </tr>
+                            {{/each}}
+                        </table>
+                        <h4 style="margin-top: 40px;">% of responses</h4>
+                        <hr>
+                        {{#with votes}}
+                            <div id="circle">
+                                <div id="needle" style="transform: rotate({{degree}}deg);"></div>
+                            </div>
+                            <div id="percent">{{percent}}%</div>
+                        {{/with}}
+                    </div>
+                    <div class="col-md-8">
+                        <h4>Results</h4>
+                        <hr>
+                        <div id="chart">
+                            {{#each results}}
+                                <div class="column" style="width: {{width}}%;">
+                                    <div class="result">{{result}}</div>
+                                    <div class="bar" style="height: {{height}}%;"></div>
+                                    <div class="answer">{{answer}}</div>
+                                </div>
+                            {{/each}}
+                        </div>
+                    </div>
+                </div>
+            {{else}}
+                <h4 class="text-center">
+                    <small>No poll question for now...</small>
+                </h4>
+            {{/with}}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h2>{{{fa 'microphone'}}} Questions</h2>
+            <hr>
+            <div class="well">
+                {{#with currentQuestion}}
+                    <h4><small><em>{{text}}</em></small></h4>
+                {{else}}
+                    <h4><small><em>No questions for now...</em></small></h4>
+                {{/with}}
+            </div>
+        </div>
+    </div>
+</template>

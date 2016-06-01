@@ -1,0 +1,13 @@
+.kiosks-list {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-top: 10px !important;
+}
+
+.kiosks-list .kiosk {
+    flex: 1 1 auto;
+    max-width: 292px;
+    margin: 0 10px;
+}
