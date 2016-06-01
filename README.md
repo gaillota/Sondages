@@ -1,4 +1,4 @@
-# Sondages
+# Survey
 An application you can use during a stage presentation
 
 ## Features
