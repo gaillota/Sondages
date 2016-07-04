@@ -2,9 +2,9 @@
 An application you can use during a stage presentation
 
 ## Features
-This application has 3 types of user :
-* A public user (aka the audience)
-* A moderator (usually in backstage, monitoring)
+This application has 3 types of users :
+* A public user (the audience)
+* A moderator (usually in the backstage, monitoring)
 * The speaker
 
 Each user has his own dedicated screen
