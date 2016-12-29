@@ -1,6 +1,10 @@
 # Survey
 An application you can use during a stage presentation
 
+__/!\ This project is not under active development.__
+
+__/!\ It uses Meteor 1.2 and it was developped in just 3 days so it might need some improvements...__
+
 ## Features
 This application has 3 types of users :
 * A public user (the audience)
